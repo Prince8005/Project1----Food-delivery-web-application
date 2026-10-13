@@ -1,29 +1,28 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useState } from 'react'
+import { food_items } from '../Food'
+
 export const dataContext = createContext()
-import { food_items } from '../Food';
 
 function UserContext({ children }) {
 
+    const [cate, setCate] = useState(food_items)
+    const [input, setInput] = useState("")
+    const [showCart, setShowCart] = useState(false)
 
-    let [cate, setCate] = useState(food_items);
-    let [input, setInput] = useState("")
-    let [showCart,setShowCart]=useState(false)
-    let data = {
+    const data = {
         input,
         setInput,
         cate,
         setCate,
         showCart,
         setShowCart
-
     }
+
     return (
-        <div>
-            <dataContext.Provider value={data}>
-                {children}
-            </dataContext.Provider >
-        </div>
+        <dataContext.Provider value={data}>
+            {children}
+        </dataContext.Provider>
     )
 }
 
-export default UserContext
+export default UserContext;
